@@ -1,282 +1,392 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-  <title>R Jaswanth — Portfolio</title>  
-  <meta name="description" content="R Jaswanth | AI/ML Student & Developer — Projects, skills, certifications, and contact."/>  
-  <script src="https://cdn.tailwindcss.com"></script>  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] },
-          colors: {
-            brand: {
-              50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
-              400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
-              800: '#3730a3', 900: '#312e81'
-            }
-          },
-          boxShadow: { soft: '0 10px 25px -10px rgba(0,0,0,0.25)' }
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <style>
-    .fade-in { animation: fade 0.6s ease 1 both; }
-    @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: none;} }
-  </style>
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R Jaswanth — Portfolio</title>
+  <meta name="description" content="R Jaswanth | AI/ML Student & Developer — Projects, skills, certifications, and contact."/>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] },
+          colors: {
+            brand: {
+              50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
+              400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
+              800: '#3730a3', 900: '#312e81'
+            }
+          },
+          boxShadow: { soft: '0 10px 25px -10px rgba(0,0,0,0.25)' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- React 18 UMD -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel for JSX in-browser (works fine on GitHub Pages) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    .fade-in { animation: fade 0.6s ease 1 both; }
+    @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: none;} }
+  </style>
 </head>
 <body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
-  <div id="root"></div>  
-  <script type="text/babel">
-    const { useEffect, useState } = React;
-    const cx = (...classes) => classes.filter(Boolean).join(' ');
+  <div id="root"></div>  <script type="text/babel">
+    const { useEffect, useState } = React;
 
-    function useDarkMode() {
-      const [dark, setDark] = useState(() => {
-        const saved = localStorage.getItem('theme');
-        if (saved) return saved === 'dark';
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      });
-      useEffect(() => {
-        const root = document.documentElement;
-        if (dark) {
-          root.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          root.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        }
-      }, [dark]);
-      return [dark, setDark];
-    }
+    // util
+    const cx = (...classes) => classes.filter(Boolean).join(' ');
 
-    const INFO = {
-      name: 'R Jaswanth',
-      tagline: 'AI/ML Student • Developer • Editor',
-      email: 'jaswanthnaidu1309@gmail.com',
-      phone: '6301114629',
-      github: 'https://github.com/',
-      linkedin: 'https://www.linkedin.com/in/jaswanth-ravilla-b40497313?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-      resumeUrl: './assets/jaswanth.pdf',
-      about: `I'm a B.Tech CSE (AI & ML) student at Takshashila University. I specialize in building practical, efficient, and user-friendly web applications, combining clean UI, responsive design, and fast prototyping. I enjoy tackling technical challenges, collaborating in teams, and creating impactful digital content through video editing and creative tech.`
-    };
+    // theme
+    function useDarkMode() {
+      const [dark, setDark] = useState(() => {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved === 'dark';
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      });
+      useEffect(() => {
+        const root = document.documentElement;
+        if (dark) {
+          root.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          root.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+      }, [dark]);
+      return [dark, setDark];
+    }
 
-    const SKILLS = [
-      'Python', 'C/C++', 'Data Structures', 'Machine Learning (basics)', 'Git & GitHub',
-      'HTML', 'CSS', 'JavaScript', 'Tailwind', 'React (basics)', 'Video Editing'
-    ];
+    // data
+    const INFO = {
+      name: 'R Jaswanth',
+      tagline: 'AI/ML Student • Developer • Editor',
+      email: 'jaswanthnaidu1309@gmail.com',
+      phone: '6301114629',
+      github: 'https://github.com/', // update to your GitHub profile
+      linkedin: 'https://www.linkedin.com/in/jaswanth-ravilla-b40497313?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', // update to your LinkedIn URL
+      // place the file in public/assets/jaswanth.pdf (repo root on GitHub Pages)
+      resumeUrl: './assets/jaswanth.pdf',
+      about: `I'm a B.Tech CSE (AI & ML) student at Takshashila University. A passionate Web Developer, Business Development Enthusiast, and Media Editor. I create responsive websites, craft impactful digital content, and contribute to growth-focused business solutions. I love building practical projects,
+      learning fast, and shipping clean, responsive UIs. I also enjoy video editing and creative tech.`
+    };
 
-    const PROJECTS = [
-      {
-        title: 'CGPA Calculator',
-        desc: 'Simple tool to compute semester-wise and cumulative CGPA from grade inputs.',
-        stack: ['Python', 'Pandas', 'Streamlit'],
-        code: 'Contact Me For More Details',
-        demo: 'Contact Me For More Details',
-      },
-      {
-        title: 'AR-Based First Aid & Emergency Guide',
-        desc: 'Guided first-aid steps for caregivers using mobile AR overlays (concept prototype).',
-        stack: ['Android', 'ARCore (concept)', 'Figma'],
-        code: 'Contact Me For More Details',
-        demo: 'Contact Me For More Details',
-      },
-      {
-        title: 'Career Path Recommender (Xebia Conclave)',
-        desc: 'ML-assisted suggestions for career tracks with a clean UI and Firebase deploy.',
-        stack: ['React', 'Tailwind', 'Firebase'],
-        code: 'Contact Me For More Details',
-        demo: 'Contact Me For More Details',
-      },
-    ];
+    const SKILLS = [
+      'Python', 'C/C++', 'Data Structures', 'Machine Learning (basics)', 'Git & GitHub',
+      'HTML', 'CSS', 'JavaScript', 'Tailwind', 'React (basics)', 'Video Editing'
+    ];
 
-    const CERTIFICATIONS = [
-      { name: 'Microsoft Azure Administrator', file: './assets/certificates/azure.pdf' },
-      { name: 'Deloitte Technology Job Simulation', file: './assets/certificates/deloitte.pdf' },
-      { name: 'Simplilearn – Introduction to AI', file: './assets/certificates/simplilearn.pdf' },
-      { name: 'Xebia Academy – Certificate of Participation', file: './assets/certificates/xebia.pdf' },
-      { name: 'Digital Electronics & VLSI', file: './assets/certificates/vlsi.pdf' },
-      { name: 'German Language — Level 1', file: './assets/certificates/german.pdf' },
-    ];
+    const PROJECTS = [
+      {
+        title: 'CGPA Calculator',
+        desc: 'Simple tool to compute semester-wise and cumulative CGPA from grade inputs.',
+        stack: ['Python', 'Pandas', 'Streamlit'],
+        code: 'Contact Me For More Details',
+        demo: 'Contact Me For More Details',
+      
+      },
+      {
+        title: 'AR-Based First Aid & Emergency Guide',
+        desc: 'Guided first-aid steps for caregivers using mobile AR overlays (concept prototype).',
+        stack: ['Android', 'ARCore (concept)', 'Figma'],
+        code: 'Contact Me For More Details',
+        demo: 'Contact Me For More Details',
+      
+      },
+      {
+        title: 'Career Path Recommender (Xebia Conclave)',
+        desc: 'ML-assisted suggestions for career tracks with a clean UI and Firebase deploy.',
+        stack: ['React', 'Tailwind', 'Firebase'],
+        code: 'Contact Me For More Details',
+        demo: 'Contact Me For More Details',
+        
+      },
+    ];
 
-    function Container({ children, className }) {
-      return <div className={cx('mx-auto max-w-6xl px-4 sm:px-6 lg:px-8', className)}>{children}</div>;
-    }
+    // Place these files under public/assets/certificates/
+    const CERTIFICATIONS = [
+      { name: 'Microsoft Azure Administrator', file: './assets/certificates/azure.pdf' },
+      { name: 'Deloitte Technology Job Simulation', file: './assets/certificates/deloitte.pdf' },
+      { name: 'Simplilearn – Introduction to AI', file: './assets/certificates/simplilearn.pdf' },
+      { name: 'Xebia Academy – Certificate of Participation', file: './assets/certificates/xebia.pdf' },
+      { name: 'Digital Electronics & VLSI', file: './assets/certificates/vlsi.pdf' },
+      { name: 'German Language — Level 1', file: './assets/certificates/german.pdf' },
+    ];
 
-    function Section({ id, title, subtitle, children }) {
-      return (
-        <section id={id} className="py-16 sm:py-20">
-          <Container>
-            <div className="mb-10">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">{title}</h2>
-              {subtitle && <p className="mt-2 text-slate-600 dark:text-slate-300">{subtitle}</p>}
-            </div>
-            <div className="fade-in">{children}</div>
-          </Container>
-        </section>
-      );
-    }
+    // UI
+    function Container({ children, className }) {
+      return <div className={cx('mx-auto max-w-6xl px-4 sm:px-6 lg:px-8', className)}>{children}</div>;
+    }
 
-    function Icon({ name, className }) {
-      const icons = {
-        pdf: (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cx('w-4 h-4', className)}>
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM8 12h2a2 2 0 1 1 0 4H8v-4zm5 0h1.5a1.5 1.5 0 0 1 0 3H13v-3zm0-2V6l4 4h-4z"/>
-          </svg>
-        ),
-        download: (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cx('w-4 h-4', className)}>
-            <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1z"/>
-            <path d="M5 20a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/>
-          </svg>
-        ),
-        sun: (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={cx('w-4 h-4', className)}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
-          </svg>
-        ),
-        moon: (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cx('w-4 h-4', className)}>
-            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>
-          </svg>
-        )
-      };
-      return icons[name] || null;
-    }
+    function Section({ id, title, subtitle, children }) {
+      return (
+        <section id={id} className="py-16 sm:py-20">
+          <Container>
+            <div className="mb-10">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">{title}</h2>
+              {subtitle && <p className="mt-2 text-slate-600 dark:text-slate-300">{subtitle}</p>}
+            </div>
+            <div className="fade-in">{children}</div>
+          </Container>
+        </section>
+      );
+    }
 
-    function Nav({ onToggleTheme, dark }) {
-      const [open, setOpen] = useState(false);
-      const links = [
-        ['About', '#about'], ['Skills', '#skills'], ['Resume', '#resume'], ['Projects', '#projects'],
-        ['Certifications', '#certs'], ['Contact', '#contact']
-      ];
-      return (
-        <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800">
-          <Container className="flex items-center justify-between h-16">
-            <a href="#" className="font-extrabold text-lg">{INFO.name}<span className="text-brand-600">.</span></a>
-            <nav className="hidden md:flex items-center gap-6">
-              {links.map(([label, href]) => (
-                <a key={label} href={href} className="text-sm font-medium hover:text-brand-600 transition-colors">{label}</a>
-              ))}
-              <button onClick={onToggleTheme} aria-label="Toggle theme" className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm hover:shadow-soft dark:border-slate-700">
-                <Icon name={dark ? 'sun' : 'moon'} /> {dark ? 'Light' : 'Dark'}
-              </button>
-            </nav>
-            <button className="md:hidden inline-flex items-center" onClick={() => setOpen(!open)} aria-label="Menu">
-              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
-          </Container>
-          {open && (
-            <div className="md:hidden border-t border-slate-200 dark:border-slate-800">
-              <Container className="py-3 flex flex-col gap-3">
-                {links.map(([label, href]) => (
-                  <a key={label} href={href} className="text-sm font-medium" onClick={() => setOpen(false)}>{label}</a>
-                ))}
-                <button onClick={() => { onToggleTheme(); setOpen(false); }} className="mt-2 inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm dark:border-slate-700"><Icon name={dark ? 'sun' : 'moon'} /> {dark ? 'Light' : 'Dark'} Mode</button>
-              </Container>
-            </div>
-          )}
-        </header>
-      );
-    }
+    function Icon({ name, className }) {
+      const icons = {
+        pdf: (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cx('w-4 h-4', className)}>
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM8 12h2a2 2 0 1 1 0 4H8v-4zm5 0h1.5a1.5 1.5 0 0 1 0 3H13v-3zm0-2V6l4 4h-4z"/>
+          </svg>
+        ),
+        download: (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cx('w-4 h-4', className)}>
+            <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1z"/>
+            <path d="M5 20a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1z"/>
+          </svg>
+        ),
+        sun: (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={cx('w-4 h-4', className)}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
+          </svg>
+        ),
+        moon: (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cx('w-4 h-4', className)}>
+            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"/>
+          </svg>
+        )
+      };
+      return icons[name] || null;
+    }
 
-    function Hero() {
-      return (
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 opacity-50 blur-3xl pointer-events-none" aria-hidden>
-            <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand-500/30"></div>
-            <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-fuchsia-500/20"></div>
-          </div>
-          <Container className="py-16 sm:py-24">
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-              <div>
-                <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-                  Hi, I'm <span className="text-brand-600">{INFO.name}</span>
-                </h1>
-                <p className="mt-3 text-lg sm:text-xl text-slate-600 dark:text-slate-300">{INFO.tagline}</p>
-                <p className="mt-4 max-w-2xl text-slate-600 dark:text-slate-300">{INFO.about}</p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a href="#projects" className="inline-flex items-center rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft hover:translate-y-[-1px] transition">
-                    View Projects
-                  </a>
-                  <a href="#contact" className="inline-flex items-center rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 font-medium hover:shadow-soft">
-                    Contact
-                  </a>
-                </div>
-              </div>
-              <div className="flex justify-center md:justify-end">
-                <div className="relative h-48 w-48 sm:h-60 sm:w-60 rounded-3xl bg-gradient-to-br from-brand-500 to-fuchsia-500 p-1 shadow-soft overflow-hidden">
-                  <img src="./assets/profile.jpg" alt="R Jaswanth" className="h-full w-full object-cover rounded-2xl" />
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
-      );
-    }
+    function Nav({ onToggleTheme, dark }) {
+      const [open, setOpen] = useState(false);
+      const links = [
+        ['About', '#about'], ['Skills', '#skills'], ['Projects', '#projects'],
+        ['Certifications', '#certs'], ['Resume', '#resume'], ['Contact', '#contact']
+      ];
+      return (
+        <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800">
+          <Container className="flex items-center justify-between h-16">
+            <a href="#" className="font-extrabold text-lg">{INFO.name}<span className="text-brand-600">.</span></a>
+            <nav className="hidden md:flex items-center gap-6">
+              {links.map(([label, href]) => (
+                <a key={label} href={href} className="text-sm font-medium hover:text-brand-600 transition-colors">{label}</a>
+              ))}
+              <button onClick={onToggleTheme} aria-label="Toggle theme" className="inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm hover:shadow-soft dark:border-slate-700">
+                <Icon name={dark ? 'sun' : 'moon'} /> {dark ? 'Light' : 'Dark'}
+              </button>
+            </nav>
+            <button className="md:hidden inline-flex items-center" onClick={() => setOpen(!open)} aria-label="Menu">
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+          </Container>
+          {open && (
+            <div className="md:hidden border-t border-slate-200 dark:border-slate-800">
+              <Container className="py-3 flex flex-col gap-3">
+                {links.map(([label, href]) => (
+                  <a key={label} href={href} className="text-sm font-medium" onClick={() => setOpen(false)}>{label}</a>
+                ))}
+                <button onClick={() => { onToggleTheme(); setOpen(false); }} className="mt-2 inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm dark:border-slate-700"><Icon name={dark ? 'sun' : 'moon'} /> {dark ? 'Light' : 'Dark'} Mode</button>
+              </Container>
+            </div>
+          )}
+        </header>
+      );
+    }
 
-    function About() {
-      return (
-        <Section id="about" title="About Me" subtitle="Professional Snapshot">
-          <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div className="space-y-4">
-              <p>
-                I'm a 3rd-year B.Tech CSE (AI & ML) student at Takshashila University, specializing in building practical, efficient, and user-friendly web applications.
-              </p>
-              <p>
-                I focus on clean, responsive interfaces, integrating ML solutions, and rapid prototyping. I thrive in collaborative environments and enjoy tackling challenging technical problems.
-              </p>
-              <p>
-                Beyond development, I have a keen interest in video editing and digital content creation, combining creativity with technology to deliver impactful results.
-              </p>
-            </div>
-            <ul className="space-y-2 text-sm">
-              <li><strong>Email:</strong> <a className="underline" href={`mailto:${INFO.email}`}>{INFO.email}</a></li>
-              <li><strong>GitHub:</strong> <a className="underline" href={INFO.github} target="_blank" rel="noopener noreferrer">Profile</a></li>
-              <li><strong>LinkedIn:</strong> <a className="underline" href={INFO.linkedin} target="_blank" rel="noopener noreferrer">Profile</a></li>
-            </ul>
-          </div>
-        </Section>
-      );
-    }
+function Hero() {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 -z-10 opacity-50 blur-3xl pointer-events-none" aria-hidden>
+        <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand-500/30"></div>
+        <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-fuchsia-500/20"></div>
+      </div>
+      <Container className="py-16 sm:py-24">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+              Hi, I'm <span className="text-brand-600">{INFO.name}</span>
+            </h1>
+            <p className="mt-3 text-lg sm:text-xl text-slate-600 dark:text-slate-300">{INFO.tagline}</p>
+            <p className="mt-4 max-w-2xl text-slate-600 dark:text-slate-300">{INFO.about}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#projects" className="inline-flex items-center rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft hover:translate-y-[-1px] transition">
+                View Projects
+              </a>
+              <a href="#contact" className="inline-flex items-center rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 font-medium hover:shadow-soft">
+                Contact
+              </a>
+            </div>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <div className="relative h-48 w-48 sm:h-60 sm:w-60 rounded-3xl bg-gradient-to-br from-brand-500 to-fuchsia-500 p-1 shadow-soft overflow-hidden">
+              <img 
+                src="./assets/profile.jpg" 
+                alt="R Jaswanth" 
+                className="h-full w-full object-cover rounded-2xl"
+              />
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+      
+    function Skills() {
+      return (
+        <Section id="skills" title="Skills" subtitle="Tech I use & learn">
+          <div className="flex flex-wrap gap-2">
+            {SKILLS.map((s) => (
+              <span key={s} className="rounded-full border border-slate-300 dark:border-slate-700 px-3 py-1 text-sm bg-white/60 dark:bg-slate-900/60">{s}</span>
+            ))}
+          </div>
+        </Section>
+      );
+    }
 
-    function Skills() {
-      return (
-        <Section id="skills" title="Skills" subtitle="Tech I use & learn">
-          <div className="flex flex-wrap gap-2">
-            {SKILLS.map((s) => (
-              <span key={s} className="rounded-full border border-slate-300 dark:border-slate-700 px-3 py-1 text-sm bg-white/60 dark:bg-slate-900/60">{s}</span>
-            ))}
-          </div>
-        </Section>
-      );
-    }
+    function Projects() {
+      return (
+        <Section id="projects" title="Projects" subtitle="Selected work & experiments">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROJECTS.map((p) => (
+              <article key={p.title} className="group rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white/70 dark:bg-slate-900/70 hover:shadow-soft transition">
+                <div className="h-40 bg-gradient-to-br from-slate-200 to-slate-100 dark:from-slate-800 dark:to-slate-900 grid place-items-center">
+                  <span className="text-4xl">📦</span>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold">{p.title}</h3>
+                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{p.desc}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {p.stack.map((t) => (
+                      <span key={t} className="rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs">{t}</span>
+                    ))}
+                  </div>
+                  <div className="mt-4 flex gap-3">
+                    <a href={p.code} className="text-sm font-medium underline underline-offset-4">Code</a>
+                    <a href={p.demo} className="text-sm font-medium underline underline-offset-4">Live</a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Section>
+      );
+    }
 
-    function Resume() {
-      return (
-        <Section id="resume" title="Resume">
-          <div className="flex flex-wrap items-center gap-3">
-            <a href={INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft hover:translate-y-[-1px] transition">
-              <Icon name="pdf" /> View Resume
-            </a>
-            <a href={INFO.resumeUrl} download className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 font-medium hover:shadow-soft">
-              <Icon name="download" /> Download
-            </a>
-          </div>
-        </Section>
-      );
-    }
+    function About() {
+      return (
+        <Section id="about" title="About Me" subtitle="Quick intro">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="md:col-span-2 space-y-4">
+              <p>I'm currently in my 3rd year of B.Tech CSE (AI & ML). I enjoy solving real problems with simple, clean UI and writing readable code. I'm fast at picking up new tools and I like shipping things quickly.</p>
+              <p>Outside coding, I'm into video editing and content creation. I believe in learning-by-doing and shipping small features every day.</p>
+            </div>
+            <ul className="space-y-2 text-sm">
+              <li><strong>Location:</strong> {INFO.location}</li>
+              <li><strong>Email:</strong> <a className="underline" href={`mailto:${INFO.email}`}>{INFO.email}</a></li>
+              <li><strong>Phone:</strong> <a className="underline" href={`tel:${INFO.phone}`}>{INFO.phone}</a></li>
+              <li><strong>GitHub:</strong> <a className="underline" href={INFO.github} target="_blank" rel="noopener noreferrer">Profile</a></li>
+              <li><strong>LinkedIn:</strong> <a className="underline" href={INFO.linkedin} target="_blank" rel="noopener noreferrer">Profile</a></li>
+            </ul>
+          </div>
+        </Section>
+      );
+    }
 
-    function Projects() {
-      return (
-        <Section id="projects" title="
+    function Certifications() {
+      return (
+        <Section id="certs" title="Certifications & Training">
+          <ul className="grid sm:grid-cols-2 gap-3">
+            {CERTIFICATIONS.map((c) => (
+              <li key={c.name} className="rounded-xl border border-slate-200 dark:border-slate-800 p-4 bg-white/60 dark:bg-slate-900/60 flex items-center justify-between gap-3">
+                <a href={c.file} target="_blank" rel="noopener noreferrer" className="underline font-medium hover:text-brand-600 inline-flex items-center gap-2">
+                  <Icon name="pdf" />
+                  <span>{c.name}</span>
+                </a>
+                <a href={c.file} download className="text-xs px-3 py-1 inline-flex items-center gap-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:shadow-soft">
+                  <Icon name="download" /> Download
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      );
+    }
+
+    function Resume() {
+      return (
+        <Section id="resume" title="Resume">
+          <div className="flex flex-wrap items-center gap-3">
+            <a href={INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft hover:translate-y-[-1px] transition">
+              <Icon name="pdf" /> View Resume
+            </a>
+            <a href={INFO.resumeUrl} download className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 font-medium hover:shadow-soft">
+              <Icon name="download" /> Download
+            </a>
+          </div>
+        </Section>
+      );
+    }
+
+    function Contact() {
+      return (
+        <Section id="contact" title="Contact">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <p className="text-slate-600 dark:text-slate-300">Open for internships, collabs, and interesting problems.</p>
+              <p>Prefer email: <a className="underline" href={`mailto:${INFO.email}`}>{INFO.email}</a></p>
+            </div>
+            <form className="space-y-3" onSubmit={(e)=>{e.preventDefault(); alert('Thanks! Just email me directly for now.');}}>
+              <input className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 px-4 py-3" placeholder="Your name" required />
+              <input type="email" className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 px-4 py-3" placeholder="Your email" required />
+              <textarea rows="4" className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 px-4 py-3" placeholder="Message"></textarea><button className="rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft">Send</button>
+        </form>
+      </div>
+    </Section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="py-10 border-t border-slate-200 dark:border-slate-800">
+      <Container className="text-center text-sm text-slate-500">
+        <p>© {new Date().getFullYear()} {INFO.name}. Built with React + Tailwind. Hosted on GitHub Pages.</p>
+      </Container>
+    </footer>
+  );
+}
+
+function App() {
+  const [dark, setDark] = useDarkMode();
+  const handleToggle = () => setDark(d => !d);
+  return (
+    <div>
+      <Nav onToggleTheme={handleToggle} dark={dark} />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Certifications />
+        <Resume />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
+  </script>
+</body>
+</html>
