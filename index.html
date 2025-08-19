@@ -1,10 +1,11 @@
-<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>R Jaswanth — Portfolio</title>
-  <meta name="description" content="R Jaswanth | AI/ML Student & Developer — Projects, skills, certifications, and contact."/>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>R Jaswanth — Portfolio</title>  
+  <meta name="description" content="R Jaswanth | AI/ML Student & Developer — Projects, skills, certifications, and contact."/>  
+  <script src="https://cdn.tailwindcss.com"></script>  
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -26,10 +27,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- React 18 UMD -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <!-- Babel for JSX in-browser (works fine on GitHub Pages) -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     .fade-in { animation: fade 0.6s ease 1 both; }
@@ -37,13 +36,11 @@
   </style>
 </head>
 <body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
-  <div id="root"></div>  <script type="text/babel">
+  <div id="root"></div>  
+  <script type="text/babel">
     const { useEffect, useState } = React;
-
-    // util
     const cx = (...classes) => classes.filter(Boolean).join(' ');
 
-    // theme
     function useDarkMode() {
       const [dark, setDark] = useState(() => {
         const saved = localStorage.getItem('theme');
@@ -63,18 +60,15 @@
       return [dark, setDark];
     }
 
-    // data
     const INFO = {
       name: 'R Jaswanth',
       tagline: 'AI/ML Student • Developer • Editor',
       email: 'jaswanthnaidu1309@gmail.com',
       phone: '6301114629',
-      github: 'https://github.com/', // update to your GitHub profile
-      linkedin: 'https://www.linkedin.com/in/jaswanth-ravilla-b40497313?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', // update to your LinkedIn URL
-      // place the file in public/assets/jaswanth.pdf (repo root on GitHub Pages)
+      github: 'https://github.com/',
+      linkedin: 'https://www.linkedin.com/in/jaswanth-ravilla-b40497313?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       resumeUrl: './assets/jaswanth.pdf',
-      about: `I'm a B.Tech CSE (AI & ML) student at Takshashila University. A passionate Web Developer, Business Development Enthusiast, and Media Editor. I create responsive websites, craft impactful digital content, and contribute to growth-focused business solutions. I love building practical projects,
-      learning fast, and shipping clean, responsive UIs. I also enjoy video editing and creative tech.`
+      about: `I'm a B.Tech CSE (AI & ML) student at Takshashila University. I specialize in building practical, efficient, and user-friendly web applications, combining clean UI, responsive design, and fast prototyping. I enjoy tackling technical challenges, collaborating in teams, and creating impactful digital content through video editing and creative tech.`
     };
 
     const SKILLS = [
@@ -89,7 +83,6 @@
         stack: ['Python', 'Pandas', 'Streamlit'],
         code: 'Contact Me For More Details',
         demo: 'Contact Me For More Details',
-      
       },
       {
         title: 'AR-Based First Aid & Emergency Guide',
@@ -97,7 +90,6 @@
         stack: ['Android', 'ARCore (concept)', 'Figma'],
         code: 'Contact Me For More Details',
         demo: 'Contact Me For More Details',
-      
       },
       {
         title: 'Career Path Recommender (Xebia Conclave)',
@@ -105,11 +97,9 @@
         stack: ['React', 'Tailwind', 'Firebase'],
         code: 'Contact Me For More Details',
         demo: 'Contact Me For More Details',
-        
       },
     ];
 
-    // Place these files under public/assets/certificates/
     const CERTIFICATIONS = [
       { name: 'Microsoft Azure Administrator', file: './assets/certificates/azure.pdf' },
       { name: 'Deloitte Technology Job Simulation', file: './assets/certificates/deloitte.pdf' },
@@ -119,7 +109,6 @@
       { name: 'German Language — Level 1', file: './assets/certificates/german.pdf' },
     ];
 
-    // UI
     function Container({ children, className }) {
       return <div className={cx('mx-auto max-w-6xl px-4 sm:px-6 lg:px-8', className)}>{children}</div>;
     }
@@ -168,8 +157,8 @@
     function Nav({ onToggleTheme, dark }) {
       const [open, setOpen] = useState(false);
       const links = [
-        ['About', '#about'], ['Skills', '#skills'], ['Projects', '#projects'],
-        ['Certifications', '#certs'], ['Resume', '#resume'], ['Contact', '#contact']
+        ['About', '#about'], ['Skills', '#skills'], ['Resume', '#resume'], ['Projects', '#projects'],
+        ['Certifications', '#certs'], ['Contact', '#contact']
       ];
       return (
         <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800">
@@ -201,98 +190,58 @@
       );
     }
 
-function Hero() {
-  return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 opacity-50 blur-3xl pointer-events-none" aria-hidden>
-        <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand-500/30"></div>
-        <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-fuchsia-500/20"></div>
-      </div>
-      <Container className="py-16 sm:py-24">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-              Hi, I'm <span className="text-brand-600">{INFO.name}</span>
-            </h1>
-            <p className="mt-3 text-lg sm:text-xl text-slate-600 dark:text-slate-300">{INFO.tagline}</p>
-            <p className="mt-4 max-w-2xl text-slate-600 dark:text-slate-300">{INFO.about}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href="#projects" className="inline-flex items-center rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft hover:translate-y-[-1px] transition">
-                View Projects
-              </a>
-              <a href="#contact" className="inline-flex items-center rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 font-medium hover:shadow-soft">
-                Contact
-              </a>
-            </div>
-          </div>
-          <div className="flex justify-center md:justify-end">
-            <div className="relative h-48 w-48 sm:h-60 sm:w-60 rounded-3xl bg-gradient-to-br from-brand-500 to-fuchsia-500 p-1 shadow-soft overflow-hidden">
-              <img 
-                src="./assets/profile.jpg" 
-                alt="R Jaswanth" 
-                className="h-full w-full object-cover rounded-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-}
-      
-    function Skills() {
+    function Hero() {
       return (
-        <Section id="skills" title="Skills" subtitle="Tech I use & learn">
-          <div className="flex flex-wrap gap-2">
-            {SKILLS.map((s) => (
-              <span key={s} className="rounded-full border border-slate-300 dark:border-slate-700 px-3 py-1 text-sm bg-white/60 dark:bg-slate-900/60">{s}</span>
-            ))}
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 -z-10 opacity-50 blur-3xl pointer-events-none" aria-hidden>
+            <div className="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand-500/30"></div>
+            <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-fuchsia-500/20"></div>
           </div>
-        </Section>
-      );
-    }
-
-    function Projects() {
-      return (
-        <Section id="projects" title="Projects" subtitle="Selected work & experiments">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((p) => (
-              <article key={p.title} className="group rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white/70 dark:bg-slate-900/70 hover:shadow-soft transition">
-                <div className="h-40 bg-gradient-to-br from-slate-200 to-slate-100 dark:from-slate-800 dark:to-slate-900 grid place-items-center">
-                  <span className="text-4xl">📦</span>
+          <Container className="py-16 sm:py-24">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
+              <div>
+                <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+                  Hi, I'm <span className="text-brand-600">{INFO.name}</span>
+                </h1>
+                <p className="mt-3 text-lg sm:text-xl text-slate-600 dark:text-slate-300">{INFO.tagline}</p>
+                <p className="mt-4 max-w-2xl text-slate-600 dark:text-slate-300">{INFO.about}</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a href="#projects" className="inline-flex items-center rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft hover:translate-y-[-1px] transition">
+                    View Projects
+                  </a>
+                  <a href="#contact" className="inline-flex items-center rounded-2xl border border-slate-300 dark:border-slate-700 px-5 py-3 font-medium hover:shadow-soft">
+                    Contact
+                  </a>
                 </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-semibold">{p.title}</h3>
-                  <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{p.desc}</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {p.stack.map((t) => (
-                      <span key={t} className="rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-xs">{t}</span>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex gap-3">
-                    <a href={p.code} className="text-sm font-medium underline underline-offset-4">Code</a>
-                    <a href={p.demo} className="text-sm font-medium underline underline-offset-4">Live</a>
-                  </div>
+              </div>
+              <div className="flex justify-center md:justify-end">
+                <div className="relative h-48 w-48 sm:h-60 sm:w-60 rounded-3xl bg-gradient-to-br from-brand-500 to-fuchsia-500 p-1 shadow-soft overflow-hidden">
+                  <img src="./assets/profile.jpg" alt="R Jaswanth" className="h-full w-full object-cover rounded-2xl" />
                 </div>
-              </article>
-            ))}
-          </div>
-        </Section>
+              </div>
+            </div>
+          </Container>
+        </section>
       );
     }
 
     function About() {
       return (
-        <Section id="about" title="About Me" subtitle="Quick intro">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 space-y-4">
-              <p>I'm currently in my 3rd year of B.Tech CSE (AI & ML). I enjoy solving real problems with simple, clean UI and writing readable code. I'm fast at picking up new tools and I like shipping things quickly.</p>
-              <p>Outside coding, I'm into video editing and content creation. I believe in learning-by-doing and shipping small features every day.</p>
+        <Section id="about" title="About Me" subtitle="Professional Snapshot">
+          <div className="grid md:grid-cols-2 gap-6 items-center">
+            <div className="space-y-4">
+              <p>
+                I'm a 3rd-year B.Tech CSE (AI & ML) student at Takshashila University, specializing in building practical, efficient, and user-friendly web applications.
+              </p>
+              <p>
+                I focus on clean, responsive interfaces, integrating ML solutions, and rapid prototyping. I thrive in collaborative environments and enjoy tackling challenging technical problems.
+              </p>
+              <p>
+                Beyond development, I have a keen interest in video editing and digital content creation, combining creativity with technology to deliver impactful results.
+              </p>
             </div>
             <ul className="space-y-2 text-sm">
-              <li><strong>Location:</strong> {INFO.location}</li>
               <li><strong>Email:</strong> <a className="underline" href={`mailto:${INFO.email}`}>{INFO.email}</a></li>
-              <li><strong>Phone:</strong> <a className="underline" href={`tel:${INFO.phone}`}>{INFO.phone}</a></li>
               <li><strong>GitHub:</strong> <a className="underline" href={INFO.github} target="_blank" rel="noopener noreferrer">Profile</a></li>
               <li><strong>LinkedIn:</strong> <a className="underline" href={INFO.linkedin} target="_blank" rel="noopener noreferrer">Profile</a></li>
             </ul>
@@ -301,22 +250,14 @@ function Hero() {
       );
     }
 
-    function Certifications() {
+    function Skills() {
       return (
-        <Section id="certs" title="Certifications & Training">
-          <ul className="grid sm:grid-cols-2 gap-3">
-            {CERTIFICATIONS.map((c) => (
-              <li key={c.name} className="rounded-xl border border-slate-200 dark:border-slate-800 p-4 bg-white/60 dark:bg-slate-900/60 flex items-center justify-between gap-3">
-                <a href={c.file} target="_blank" rel="noopener noreferrer" className="underline font-medium hover:text-brand-600 inline-flex items-center gap-2">
-                  <Icon name="pdf" />
-                  <span>{c.name}</span>
-                </a>
-                <a href={c.file} download className="text-xs px-3 py-1 inline-flex items-center gap-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:shadow-soft">
-                  <Icon name="download" /> Download
-                </a>
-              </li>
+        <Section id="skills" title="Skills" subtitle="Tech I use & learn">
+          <div className="flex flex-wrap gap-2">
+            {SKILLS.map((s) => (
+              <span key={s} className="rounded-full border border-slate-300 dark:border-slate-700 px-3 py-1 text-sm bg-white/60 dark:bg-slate-900/60">{s}</span>
             ))}
-          </ul>
+          </div>
         </Section>
       );
     }
@@ -336,57 +277,6 @@ function Hero() {
       );
     }
 
-    function Contact() {
+    function Projects() {
       return (
-        <Section id="contact" title="Contact">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <p className="text-slate-600 dark:text-slate-300">Open for internships, collabs, and interesting problems.</p>
-              <p>Prefer email: <a className="underline" href={`mailto:${INFO.email}`}>{INFO.email}</a></p>
-            </div>
-            <form className="space-y-3" onSubmit={(e)=>{e.preventDefault(); alert('Thanks! Just email me directly for now.');}}>
-              <input className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 px-4 py-3" placeholder="Your name" required />
-              <input type="email" className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 px-4 py-3" placeholder="Your email" required />
-              <textarea rows="4" className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/70 px-4 py-3" placeholder="Message"></textarea><button className="rounded-2xl bg-brand-600 text-white px-5 py-3 font-medium shadow-soft">Send</button>
-        </form>
-      </div>
-    </Section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="py-10 border-t border-slate-200 dark:border-slate-800">
-      <Container className="text-center text-sm text-slate-500">
-        <p>© {new Date().getFullYear()} {INFO.name}. Built with React + Tailwind. Hosted on GitHub Pages.</p>
-      </Container>
-    </footer>
-  );
-}
-
-function App() {
-  const [dark, setDark] = useDarkMode();
-  const handleToggle = () => setDark(d => !d);
-  return (
-    <div>
-      <Nav onToggleTheme={handleToggle} dark={dark} />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Certifications />
-        <Resume />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
-
-  </script>
-</body>
-</html>
+        <Section id="projects" title="
